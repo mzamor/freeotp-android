@@ -40,4 +40,5 @@
         <item>SHA256</item>
         <item>SHA512</item>
     </string-array>
+    <string name="title_activity_splash">SplashActivity</string>
 </resources>
