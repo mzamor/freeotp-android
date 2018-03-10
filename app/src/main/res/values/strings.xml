@@ -41,4 +41,18 @@
         <item>SHA512</item>
     </string-array>
     <string name="title_activity_splash">SplashActivity</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="title_section1">Escanear código QR</string>
+    <string name="title_section2">Ingresar Manualmente</string>
+    <string name="title_section3">Acerca de esta aplicación</string>
+    <string name="title_section4">Términos y condiciones</string>
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+
+    <string name="action_settings">Settings</string>
 </resources>

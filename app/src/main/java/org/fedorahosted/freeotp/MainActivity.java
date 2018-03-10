@@ -39,6 +39,8 @@
 package org.fedorahosted.freeotp;
 
 import android.Manifest;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.widget.Toast;
 
 import org.fedorahosted.freeotp.add.ScanActivity;
@@ -128,6 +130,7 @@ public class MainActivity extends Activity implements OnMenuItemClickListener {
         return true;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private void tryOpenCamera() {
         if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.CAMERA}, PERMISSIONS_REQUEST_CAMERA);
@@ -143,16 +146,17 @@ public class MainActivity extends Activity implements OnMenuItemClickListener {
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
-        case R.id.action_scan:
-            tryOpenCamera();
-            return true;
+            case R.id.action_scan:
+                tryOpenCamera();
+                return true;
 
-        case R.id.action_about:
-            startActivity(new Intent(this, AboutActivity.class));
-            return true;
+            case R.id.action_about:
+                startActivity(new Intent(this, AboutActivity.class));
+                return true;
         }
 
         return false;

@@ -4,6 +4,8 @@
     <color name="colorText">#111111</color>
     <color name="splashBackground">#E5E5E5</color>
     <color name="colorPrimary">#0072BC</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimaryDark">#303F9F</color>
 
 
 

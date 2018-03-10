@@ -19,16 +19,17 @@
    - limitations under the License.
    -->
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
     <item
         android:id="@+id/action_scan"
-        android:showAsAction="ifRoom"
         android:icon="@drawable/qrcode"
-        android:title="@string/scan_qr_code" />
+        android:title="@string/scan_qr_code"
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_about"
-        android:showAsAction="ifRoom"
         android:icon="@android:drawable/ic_menu_info_details"
-        android:title="@string/about_freeotp" />
+        android:title="@string/about_freeotp"
+        app:showAsAction="ifRoom" />
 </menu>
