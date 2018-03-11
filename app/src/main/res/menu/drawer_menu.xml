@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/escan_cod_qr"
+            android:icon="@drawable/qrcode"
+            android:title="Escanear código QR" />
+        <item
+            android:id="@+id/ing_manual"
+            android:icon="@drawable/ic_actionedit"
+            android:title="Ingresar Manualmente" />
+        <item
+            android:id="@+id/about_us"
+            android:icon="@drawable/ic_info"
+            android:title="Acerca de esta aplicación" />
+        <item
+            android:id="@+id/terminos_y_cond"
+            android:icon="@drawable/ic_circle_c"
+            android:title="Términos y condiciones" />
+
+    </group>
+</menu>
