@@ -48,34 +48,27 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-    <application android:allowBackup="true"
+    <application
+        android:allowBackup="true"
         android:icon="@mipmap/ic_freeotp_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_freeotp_logo_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity
-            android:name=".AboutActivity"
-            android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar" />
-        <activity
-            android:name=".add.ScanActivity"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
+        android:theme="@style/AppFullScreenTheme">
+        <activity android:name=".AboutActivity" />
+        <activity android:name=".add.ScanActivity" />
         <activity
             android:name=".edit.DeleteActivity"
             android:label="@string/delete_question"
             android:theme="@android:style/Theme.Holo.Light.Dialog" />
         <activity
             android:name=".edit.EditActivity"
-            android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar"
-            android:windowSoftInputMode="stateVisible" />
+            android:label="@string/delete_question"
+            android:theme="@android:style/Theme.Holo.Light.Dialog" />
         <activity
             android:name=".Main2Activity"
-            android:clearTaskOnLaunch="true"
             android:configChanges="orientation|screenSize"
-            android:label="@string/app_name"
-            android:launchMode="singleTask" />
-
-
+            android:label="@string/app_name" />
         <activity
             android:name=".SplashActivity"
             android:label="@string/title_activity_splash"
@@ -85,10 +78,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
-
     </application>
 
 </manifest>
