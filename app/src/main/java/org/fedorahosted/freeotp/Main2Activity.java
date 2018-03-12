@@ -26,6 +26,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -39,7 +41,9 @@ import org.fedorahosted.freeotp.edit.EditActivity;
 public class Main2Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
+    private FloatingActionButton fab1,fab2,fab3;
+    private Animation fabOpen, fabClose, rotateForward, rotateBackward;
+    private boolean isOpen=false;
     private TokenAdapter mTokenAdapter;
     public static final String ACTION_IMAGE_SAVED = "org.fedorahosted.freeotp.ACTION_IMAGE_SAVED";
     private DataSetObserver mDataSetObserver;
@@ -69,15 +73,38 @@ public class Main2Activity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        fab1 = (FloatingActionButton) findViewById(R.id.fab1);
+        fab2 = (FloatingActionButton) findViewById(R.id.fab2);
+        fab3 = (FloatingActionButton) findViewById(R.id.fab3);
+
+        fabOpen= AnimationUtils.loadAnimation(this,R.anim.fab_open);
+        fabClose= AnimationUtils.loadAnimation(this,R.anim.fab_close);
+
+        rotateForward=AnimationUtils.loadAnimation(this,R.anim.rotate_forward);
+        rotateBackward=AnimationUtils.loadAnimation(this,R.anim.rotate_backward);
+
+        fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            animateFab();
             }
         });
 
+        fab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                animateFab();;
+                Toast.makeText(Main2Activity.this,"Escanear código QR",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        fab3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                animateFab();
+                Toast.makeText(Main2Activity.this,"Cargar Manualmente",Toast.LENGTH_SHORT).show();
+            }
+        });
 
         this.initialize();
 
@@ -107,6 +134,34 @@ public class Main2Activity extends AppCompatActivity
 
 
     }
+
+
+
+    private void animateFab()
+    {
+        if(isOpen)
+        {
+            fab1.startAnimation(rotateForward);
+            fab2.startAnimation(fabClose);
+            fab3.startAnimation(fabClose);
+            fab2.setClickable(false);
+            fab3.setClickable(false);
+            isOpen=false;
+        }else
+        {
+            fab1.startAnimation(rotateBackward);
+            fab2.startAnimation(fabOpen);
+            fab3.startAnimation(fabOpen);
+            fab2.setClickable(true);
+            fab3.setClickable(true);
+            isOpen=true;
+
+        }
+    }
+
+
+
+
 
     private void initialize() {
 
