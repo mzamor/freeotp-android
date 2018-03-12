@@ -29,6 +29,12 @@
         </android.support.v7.widget.Toolbar>
 
 
+        <include
+            layout="@layout/app_bar_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
         <!-- The main content view where fragments are loaded -->
         <FrameLayout
             android:id="@+id/flContent"
@@ -53,14 +59,12 @@
             />
 
 
-        <include
-            layout="@layout/app_bar_main"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
 
     </LinearLayout>
     <!-- The navigation drawer that comes from the left -->
+
+
+
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation_view"
         android:layout_width="wrap_content"
@@ -68,7 +72,6 @@
         android:layout_gravity="start"
         android:background="@android:color/white"
         app:menu="@menu/drawer_menu"
-
 
         />
 

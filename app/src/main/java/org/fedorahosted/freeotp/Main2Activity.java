@@ -118,6 +118,9 @@ public class Main2Activity extends AppCompatActivity
         this.mDrawer = this.findViewById(R.id.drawer_layout);
         this.mNavView = this.findViewById(R.id.navigation_view);
 
+        View headerView = getLayoutInflater().inflate(R.layout.nav_header_main, mNavView, false);
+        mNavView.addHeaderView(headerView);
+
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -156,7 +159,6 @@ public class Main2Activity extends AppCompatActivity
     }
 
 
-
     @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -177,8 +179,11 @@ public class Main2Activity extends AppCompatActivity
             case R.id.escan_cod_qr:
                 activityClass = ScanActivity.class;
                 break;
-            case R.id.about_us:
+            case R.id.ing_manual:
                 activityClass = DeleteActivity.class;
+                break;
+            case R.id.about_us:
+                activityClass = AboutActivity.class;
                 break;
             case R.id.terminos_y_cond:
                 activityClass = DeleteActivity.class;
@@ -189,16 +194,12 @@ public class Main2Activity extends AppCompatActivity
         if (activityClass != null) {
             Intent nextIntent = new Intent(this, activityClass);
             this.startActivity(nextIntent);
-        }else
-        {
-
         }
         // Highlight the selected item has been done by NavigationView
         menuItem.setChecked(true);
 
         // Close the navigation drawer
         this.mDrawer.closeDrawers();
-
 
     }
 
