@@ -15,7 +15,9 @@ import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -29,13 +31,19 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.GridView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Toast;
 
+
+import com.lucasurbas.listitemview.ListItemView;
 
 import org.fedorahosted.freeotp.add.ScanActivity;
 import org.fedorahosted.freeotp.edit.DeleteActivity;
 import org.fedorahosted.freeotp.edit.EditActivity;
 
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Main2Activity extends AppCompatActivity
@@ -52,7 +60,13 @@ public class Main2Activity extends AppCompatActivity
 
     private DrawerLayout mDrawer;
     private NavigationView mNavView;
+    ListView simpleList;
 
+    private ListView listOrgsYCods;
+
+
+    String orgsList[] = {"AFIP", "ANSES", "PAMI"};
+    String codigosList[] = {"234245", "42424","434455"};
 
     private class RefreshListBroadcastReceiver extends BroadcastReceiver {
         @Override
@@ -73,28 +87,55 @@ public class Main2Activity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+       codDeOrganismos();
+
+       cargarBotones();
+
+                this.initialize();
+
+        this.attachListeners();
+
+    }
+
+
+
+    private void codDeOrganismos() {
+
+        listOrgsYCods = (ListView) findViewById(R.id.list_cod_organismos);
+        OrgsYCodsAdapter orgsYCodsAdapter = new OrgsYCodsAdapter(getApplicationContext(), codigosList, orgsList);
+        listOrgsYCods.setAdapter(orgsYCodsAdapter);
+
+        registerForContextMenu(listOrgsYCods);
+    }
+
+
+    private void cargarBotones() {
         fab1 = (FloatingActionButton) findViewById(R.id.fab1);
         fab2 = (FloatingActionButton) findViewById(R.id.fab2);
         fab3 = (FloatingActionButton) findViewById(R.id.fab3);
 
-        fabOpen= AnimationUtils.loadAnimation(this,R.anim.fab_open);
-        fabClose= AnimationUtils.loadAnimation(this,R.anim.fab_close);
 
-        rotateForward=AnimationUtils.loadAnimation(this,R.anim.rotate_forward);
-        rotateBackward=AnimationUtils.loadAnimation(this,R.anim.rotate_backward);
+        fabOpen = AnimationUtils.loadAnimation(this, R.anim.fab_open);
+        fabClose = AnimationUtils.loadAnimation(this, R.anim.fab_close);
+
+        rotateForward = AnimationUtils.loadAnimation(this, R.anim.rotate_forward);
+        rotateBackward = AnimationUtils.loadAnimation(this, R.anim.rotate_backward);
 
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            animateFab();
+                animateFab();
             }
         });
 
         fab2.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
-                animateFab();;
-                Toast.makeText(Main2Activity.this,"Escanear código QR",Toast.LENGTH_SHORT).show();
+                animateFab();
+                Toast.makeText(Main2Activity.this, "Escanear código QR", Toast.LENGTH_SHORT).show();
+                tryOpenCamera();
             }
         });
 
@@ -102,40 +143,20 @@ public class Main2Activity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 animateFab();
-                Toast.makeText(Main2Activity.this,"Cargar Manualmente",Toast.LENGTH_SHORT).show();
+                Toast.makeText(Main2Activity.this, "Cargar Manualmente", Toast.LENGTH_SHORT).show();
             }
         });
-
-        this.initialize();
-
-        this.attachListeners();
-
-
-
-        mTokenAdapter = new TokenAdapter(this);
-        receiver = new RefreshListBroadcastReceiver();
-        registerReceiver(receiver, new IntentFilter(ACTION_IMAGE_SAVED));
-        ((GridView) findViewById(R.id.grid)).setAdapter(mTokenAdapter);
-        // Don't permit screenshots since these might contain OTP codes.
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
-
-        mDataSetObserver = new DataSetObserver() {
-            @Override
-            public void onChanged() {
-                super.onChanged();
-                if (mTokenAdapter.getCount() == 0)
-                    findViewById(android.R.id.empty).setVisibility(View.VISIBLE);
-                else
-                    findViewById(android.R.id.empty).setVisibility(View.GONE);
-            }
-        };
-
-        mTokenAdapter.registerDataSetObserver(mDataSetObserver);
 
 
     }
 
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater menuInflater= getMenuInflater();
+        menuInflater.inflate(R.menu.token,menu);
+    }
 
     private void animateFab()
     {
@@ -149,6 +170,7 @@ public class Main2Activity extends AppCompatActivity
             isOpen=false;
         }else
         {
+
             fab1.startAnimation(rotateBackward);
             fab2.startAnimation(fabOpen);
             fab3.startAnimation(fabOpen);
@@ -235,7 +257,7 @@ public class Main2Activity extends AppCompatActivity
                 activityClass = ScanActivity.class;
                 break;
             case R.id.ing_manual:
-                activityClass = DeleteActivity.class;
+                activityClass = FormEditActivity.class;
                 break;
             case R.id.about_us:
                 activityClass = AboutActivity.class;
