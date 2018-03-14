@@ -33,6 +33,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import com.squareup.picasso.Callback;
@@ -47,9 +49,10 @@ import static io.fotoapparat.parameter.selector.LensPositionSelectors.back;
 import static io.fotoapparat.parameter.selector.Selectors.firstAvailable;
 import static io.fotoapparat.parameter.selector.SizeSelectors.biggestSize;
 
-public class ScanActivity extends Activity {
+public class ScanActivity extends AppCompatActivity {
     private Fotoapparat fotoapparat;
     private static ScanBroadcastReceiver receiver;
+    private Toolbar toolbar;
 
     public class ScanBroadcastReceiver extends BroadcastReceiver {
         public static final String ACTION = "org.fedorahosted.freeotp.ACTION_CODE_SCANNED";
@@ -131,6 +134,18 @@ public class ScanActivity extends Activity {
         receiver = new ScanBroadcastReceiver();
         this.registerReceiver(receiver, new IntentFilter(ScanBroadcastReceiver.ACTION));
         setContentView(R.layout.scan);
+
+        toolbar = (Toolbar) findViewById(R.id.scan_toolbar);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Escanear código QR");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
+
+
+
         CameraView cameraView = findViewById(R.id.camera_view);
 
         fotoapparat = Fotoapparat

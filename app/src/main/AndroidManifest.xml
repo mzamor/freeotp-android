@@ -56,7 +56,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppFullScreenTheme">
         <activity android:name=".AboutActivity" />
-        <activity android:name=".add.ScanActivity" />
+        <activity android:name=".add.ScanActivity"
+            android:parentActivityName=".Main2Activity"
+            />
         <activity
             android:name=".edit.DeleteActivity"
             android:label="@string/delete_question"
@@ -85,6 +87,7 @@
         <activity
             android:name=".FormEditActivity"
             android:label="@string/title_activity_form_edit"
+            android:parentActivityName=".Main2Activity"
             android:theme="@style/AppFullScreenTheme"></activity>
     </application>
 

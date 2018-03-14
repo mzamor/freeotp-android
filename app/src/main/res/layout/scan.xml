@@ -18,11 +18,24 @@
    - See the License for the specific language governing permissions and
    - limitations under the License.
    -->
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/scan_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimaryDark"
+            app:titleTextColor="@color/common_google_signin_btn_text_dark_default"/>
+
+    </android.support.design.widget.AppBarLayout>
+
 
     <io.fotoapparat.view.CameraView
         android:id="@+id/camera_view"

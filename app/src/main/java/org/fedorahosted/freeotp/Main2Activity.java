@@ -1,6 +1,7 @@
 package org.fedorahosted.freeotp;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -116,6 +117,7 @@ public class Main2Activity extends AppCompatActivity
         fab3 = (FloatingActionButton) findViewById(R.id.fab3);
 
 
+
         fabOpen = AnimationUtils.loadAnimation(this, R.anim.fab_open);
         fabClose = AnimationUtils.loadAnimation(this, R.anim.fab_close);
 
@@ -142,8 +144,12 @@ public class Main2Activity extends AppCompatActivity
         fab3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Class activityClass=null;
                 animateFab();
                 Toast.makeText(Main2Activity.this, "Cargar Manualmente", Toast.LENGTH_SHORT).show();
+                activityClass=FormEditActivity.class;
+                Intent nextIntent = new Intent(Main2Activity.this, activityClass);
+                startActivity(nextIntent);
             }
         });
 
@@ -279,6 +285,8 @@ public class Main2Activity extends AppCompatActivity
         this.mDrawer.closeDrawers();
 
     }
+
+
 
 
 

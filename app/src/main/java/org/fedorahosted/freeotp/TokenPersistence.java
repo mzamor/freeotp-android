@@ -221,7 +221,7 @@ public class TokenPersistence {
             //we downloaded the image, now save it normally
             new TokenPersistence(returnParams.getContext()).save(returnParams.getToken());
             //refresh TokenAdapter
-            returnParams.context.sendBroadcast(new Intent(MainActivity.ACTION_IMAGE_SAVED));
+            //returnParams.context.sendBroadcast(new Intent(MainActivity.ACTION_IMAGE_SAVED));
         }
     }
 }
