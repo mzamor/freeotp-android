@@ -16,7 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimaryDark"
-            app:titleTextColor="@color/common_google_signin_btn_text_dark_default"/>
+            app:titleTextColor="@color/common_google_signin_btn_text_dark_default"
+            />
 
     </android.support.design.widget.AppBarLayout>
 
@@ -138,15 +139,16 @@
                 android:text="Name" />
 
             <Button
-                android:id="@+id/button2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:backgroundTint="@android:color/holo_green_dark"
-                android:gravity="center_horizontal"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="20dp"
-                android:text="Guardar" />
+                android:id="@+id/button_cargar"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/tertiary_text_dark"
+                android:gravity="center"
+                android:layout_marginTop="80dp"
+                android:layout_gravity="bottom|center"
+                android:text="Guardar"
+                android:textAlignment="center"
+                />
 
 
         </LinearLayout>

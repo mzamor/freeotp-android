@@ -32,7 +32,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimaryDark"
-            app:titleTextColor="@color/common_google_signin_btn_text_dark_default"/>
+            app:titleTextColor="@color/common_google_signin_btn_text_dark_default"
+            />
 
     </android.support.design.widget.AppBarLayout>
 
